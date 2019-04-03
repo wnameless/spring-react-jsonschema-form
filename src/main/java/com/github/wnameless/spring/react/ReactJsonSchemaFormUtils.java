@@ -34,7 +34,9 @@ public final class ReactJsonSchemaFormUtils {
     Iterator<Entry<String, JsonNode>> fields = schemaProperties.fields();
     while (fields.hasNext()) {
       Entry<String, JsonNode> f = fields.next();
-      propertyTitles.put(f.getKey(), f.getValue().get("title").textValue());
+      String title = f.getValue().get("title") == null ? ""
+          : f.getValue().get("title").textValue();
+      propertyTitles.put(f.getKey(), title);
     }
 
     return propertyTitles;
