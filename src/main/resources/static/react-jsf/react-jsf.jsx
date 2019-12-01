@@ -163,3 +163,14 @@ class ReactJSFDesigner extends React.Component {
         )
     }
 }
+
+const Img = (props) => {
+  return (
+    <img src={props.value}
+      className="rjsfFormImg" />
+  );
+};
+
+const widgets = {
+  img: Img
+};

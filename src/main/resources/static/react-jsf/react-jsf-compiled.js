@@ -223,3 +223,14 @@ var ReactJSFDesigner = function (_React$Component2) {
 
     return ReactJSFDesigner;
 }(React.Component);
+
+var Img = function Img(props) {
+  return React.createElement("img", {
+    src: props.value,
+    className: "rjsfFormImg"
+  });
+};
+
+var widgets = {
+  img: Img
+};
