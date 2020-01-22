@@ -18,8 +18,7 @@ package com.github.wnameless.spring.react;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.wnameless.jpa.type.flattenedjson.FlattenedJsonTypeConfigurer;
 
-public class SimpleReactJsonSchemaForm
-    implements ReactJsonSchemaForm<JsonNode> {
+public class SimpleReactJsonSchemaForm implements ReactJsonSchemaForm {
 
   private JsonNode formData = FlattenedJsonTypeConfigurer.INSTANCE
       .getObjectMapperFactory().get().createObjectNode();
