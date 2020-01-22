@@ -19,27 +19,44 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.wnameless.jpa.type.flattenedjson.FlattenedJsonTypeConfigurer;
 
-public interface ReactJsonSchemaForm {
+public interface ReactJsonSchemaForm<E> {
 
-  JsonNode getFormData();
+  E getFormData();
 
-  void setFormData(JsonNode formData);
+  void setFormData(E formData);
 
-  JsonNode getSchema();
+  E getSchema();
 
-  void setSchema(JsonNode schema);
+  void setSchema(E schema);
 
-  JsonNode getUiSchema();
+  E getUiSchema();
 
-  void setUiSchema(JsonNode uiSchema);
+  void setUiSchema(E uiSchema);
 
   default Map<String, JsonNode> toRjsfMap() {
     Map<String, JsonNode> map = new HashMap<>();
 
-    map.put("formData", getFormData());
-    map.put("schema", getSchema());
-    map.put("uiSchema", getUiSchema());
+    ObjectMapper mapper =
+        FlattenedJsonTypeConfigurer.INSTANCE.getObjectMapperFactory().get();
+
+    if (getFormData() instanceof JsonNode) {
+      map.put("formData", (JsonNode) getFormData());
+    } else {
+      map.put("formData", mapper.valueToTree(getFormData()));
+    }
+    if (getSchema() instanceof JsonNode) {
+      map.put("schema", (JsonNode) getSchema());
+    } else {
+      map.put("schema", mapper.valueToTree(getSchema()));
+    }
+    if (getUiSchema() instanceof JsonNode) {
+      map.put("uiSchema", (JsonNode) getUiSchema());
+    } else {
+      map.put("uiSchema", mapper.valueToTree(getUiSchema()));
+    }
 
     return map;
   }

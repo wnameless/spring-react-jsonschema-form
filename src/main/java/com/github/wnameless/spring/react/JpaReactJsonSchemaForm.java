@@ -25,7 +25,8 @@ import com.github.wnameless.jpa.type.flattenedjson.FlattenedJsonTypeConfigurer;
 import com.github.wnameless.jpa.type.flattenedjson.JsonNodeConverter;
 
 @MappedSuperclass
-public abstract class JpaReactJsonSchemaForm implements ReactJsonSchemaForm {
+public abstract class JpaReactJsonSchemaForm
+    implements ReactJsonSchemaForm<JsonNode> {
 
   @Convert(converter = JsonNodeConverter.class)
   @Lob

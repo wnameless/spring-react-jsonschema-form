@@ -21,15 +21,26 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.wnameless.jpa.type.flattenedjson.FlattenedJsonTypeConfigurer;
 
 public final class ReactJsonSchemaFormUtils {
 
   private ReactJsonSchemaFormUtils() {}
 
-  public static Map<String, String> propertyTitles(ReactJsonSchemaForm rjsf) {
+  public static Map<String, String> propertyTitles(
+      ReactJsonSchemaForm<?> rjsf) {
     Map<String, String> propertyTitles = new LinkedHashMap<>();
 
-    JsonNode schema = rjsf.getSchema();
+    JsonNode schema;
+    if (rjsf.getSchema() instanceof JsonNode) {
+      schema = (JsonNode) rjsf.getSchema();
+    } else {
+      ObjectMapper mapper =
+          FlattenedJsonTypeConfigurer.INSTANCE.getObjectMapperFactory().get();
+
+      schema = mapper.valueToTree(rjsf.getSchema());
+    }
     JsonNode schemaProperties = schema.get("properties");
     Iterator<Entry<String, JsonNode>> fields = schemaProperties.fields();
     while (fields.hasNext()) {
