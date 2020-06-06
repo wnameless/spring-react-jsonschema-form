@@ -2,13 +2,14 @@
 
 <th:block th:fragment="deps-form">
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
     <!-- React.js -->
@@ -44,5 +45,58 @@
     <th:block th:replace="ReactJSF :: deps-designer"></th:block>
     <th:block th:replace="ReactJSF :: core"></th:block>
 </th:block>
+
+<script th:fragment="new(rjsf, formId, path, respondId)" type="text/javascript" th:inline="javascript">
+    $(function () {
+        let onSubmit = (f) => {
+            axios.post( /*[[${path}]]*/ null, f.formData).then((response) => {
+                $( /*[[${respondId}]]*/ null).html(response.data);
+            });
+        };
+
+        let rjsfOpt = Object.assign({
+            btnText: /*[[#{rjsf.submit}]]*/ 'Submit',
+            onSubmit: onSubmit
+        }, /*[[${rjsf}]]*/ {});
+
+        ReactDOM.render(React.createElement(ReactJSF, rjsfOpt), $(/*[[${formId}]]*/ null)[0]);
+    });
+</script>
+
+<script th:fragment="edit(rjsf, formId, path, respondId)" type="text/javascript" th:inline="javascript">
+    $(function () {
+        let onSubmit = (f) => {
+            axios.post( /*[[${path}]]*/ null, f.formData).then((response) => {
+                $( /*[[${respondId}]]*/ null).html(response.data);
+            });
+        };
+
+        let rjsfOpt = Object.assign({
+            btnText: /*[[#{rjsf.submit}]]*/ 'Submit',
+            onSubmit: onSubmit
+        }, /*[[${rjsf}]]*/ {});
+
+        ReactDOM.render(React.createElement(ReactJSF, rjsfOpt), $(/*[[${formId}]]*/ null)[0]);
+    });
+</script>
+
+<script th:fragment="show(rjsf, formId, path, respondId)" type="text/javascript" th:inline="javascript">
+    $(function () {
+        let onSubmit = (f) => {
+            axios.get( /*[[${path}]]*/ null)
+                .then((response) => {
+                    $( /*[[${respondId}]]*/ null).html(response.data);
+                });
+        };
+
+        let rjsfOpt = Object.assign({
+            btnText: /*[[#{rjsf.back}]]*/ 'Back',
+            onSubmit: onSubmit,
+            disabled: true
+        }, /*[[${rjsf}]]*/ {});
+
+        ReactDOM.render(React.createElement(ReactJSF, rjsfOpt), $(/*[[${formId}]]*/ null)[0]);
+    });
+</script>
 
 </html>
