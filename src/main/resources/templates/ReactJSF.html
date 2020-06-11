@@ -58,7 +58,8 @@
         };
 
         let rjsfOpt = Object.assign({
-            btnText: /*[[#{rjsf.submit}]]*/ 'Submit',
+            
+            btnText: /*[[ ${#strings.defaultString(#messages.msgOrNull('rjsf.submit'), 'Submit')} ]]*/ '',
             onSubmit: onSubmit
         }, /*[[${rjsf}]]*/ {});
 
@@ -75,7 +76,7 @@
         };
 
         let rjsfOpt = Object.assign({
-            btnText: /*[[#{rjsf.submit}]]*/ 'Submit',
+            btnText: /*[[ ${#strings.defaultString(#messages.msgOrNull('rjsf.submit'), 'Submit')} ]]*/ '',
             onSubmit: onSubmit
         }, /*[[${rjsf}]]*/ {});
 
@@ -93,7 +94,7 @@
         };
 
         let rjsfOpt = Object.assign({
-            btnText: /*[[#{rjsf.back}]]*/ 'Back',
+            btnText: /*[[ ${#strings.defaultString(#messages.msgOrNull('rjsf.back'), 'Back')} ]]*/ '',
             onSubmit: onSubmit,
             disabled: true
         }, /*[[${rjsf}]]*/ {});
