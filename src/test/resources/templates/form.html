@@ -1,0 +1,10 @@
+<html>
+
+<th:block th:fragment="new">
+	<div id="form"></div>
+	<script type="text/javascript" th:inline="javascript">
+		ReactJSF.newForm(/*[[${rjsf.toRjsfMap()}]]*/ null, 'form', '/', 'main');
+	</script>
+</th:block>
+
+</html>
