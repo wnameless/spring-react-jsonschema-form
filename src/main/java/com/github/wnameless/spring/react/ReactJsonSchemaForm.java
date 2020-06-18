@@ -17,8 +17,10 @@ package com.github.wnameless.spring.react;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public interface ReactJsonSchemaForm {
 
@@ -40,6 +42,17 @@ public interface ReactJsonSchemaForm {
     map.put("formData", getFormData());
     map.put("schema", getSchema());
     map.put("uiSchema", getUiSchema());
+
+    return map;
+  }
+
+  default Map<String, JsonNode> toRjsfMap(Map<String, Object> attrs) {
+    Map<String, JsonNode> map = toRjsfMap();
+
+    ObjectMapper mapper = new ObjectMapper();
+    for (Entry<String, Object> attr : attrs.entrySet()) {
+      map.put(attr.getKey(), mapper.valueToTree(attr.getValue()));
+    }
 
     return map;
   }

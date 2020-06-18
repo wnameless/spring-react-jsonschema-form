@@ -10,7 +10,7 @@ class ReactJSF extends React.Component {
     render() {
         return (
             <root.div>
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"></link>
+                <link rel="stylesheet" href={this.props.cssHref || "https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"}></link>
                 <Form
                     id={this.props.id || Math.random().toString(36).substr(2, 5)}
                     className={this.props.className}
