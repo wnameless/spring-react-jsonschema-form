@@ -30,11 +30,11 @@ public interface ReactJsonSchemaForm {
 
   JsonNode getSchema();
 
-  void setSchema(JsonNode schema);
+  default void setSchema(JsonNode schema) {}
 
   JsonNode getUiSchema();
 
-  void setUiSchema(JsonNode uiSchema);
+  default void setUiSchema(JsonNode uiSchema) {}
 
   default Map<String, JsonNode> toRjsfMap() {
     Map<String, JsonNode> map = new HashMap<>();
