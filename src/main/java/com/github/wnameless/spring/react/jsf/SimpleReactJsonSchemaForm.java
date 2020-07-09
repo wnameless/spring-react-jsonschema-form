@@ -21,8 +21,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SimpleReactJsonSchemaForm implements ReactJsonSchemaForm {
 
   private JsonNode formData;
+
   private JsonNode schema;
+
   private JsonNode uiSchema;
+
   {
     {
       ObjectMapper mapper = new ObjectMapper();
