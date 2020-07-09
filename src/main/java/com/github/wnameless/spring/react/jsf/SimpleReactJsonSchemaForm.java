@@ -16,18 +16,21 @@
 package com.github.wnameless.spring.react.jsf;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.wnameless.jpa.type.flattenedjson.FlattenedJsonTypeConfigurer;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SimpleReactJsonSchemaForm implements ReactJsonSchemaForm {
 
-  private JsonNode formData = FlattenedJsonTypeConfigurer.INSTANCE
-      .getObjectMapperFactory().get().createObjectNode();
-
-  private JsonNode schema = FlattenedJsonTypeConfigurer.INSTANCE
-      .getObjectMapperFactory().get().createObjectNode();
-
-  private JsonNode uiSchema = FlattenedJsonTypeConfigurer.INSTANCE
-      .getObjectMapperFactory().get().createObjectNode();
+  private JsonNode formData;
+  private JsonNode schema;
+  private JsonNode uiSchema;
+  {
+    {
+      ObjectMapper mapper = new ObjectMapper();
+      formData = mapper.createObjectNode();
+      schema = mapper.createObjectNode();
+      uiSchema = mapper.createObjectNode();
+    }
+  }
 
   @Override
   public JsonNode getFormData() {
