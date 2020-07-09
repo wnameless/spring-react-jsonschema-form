@@ -13,7 +13,7 @@
  * the License.
  *
  */
-package com.github.wnameless.spring.react;
+package com.github.wnameless.spring.react.jsf;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.wnameless.jpa.type.flattenedjson.FlattenedJsonTypeConfigurer;

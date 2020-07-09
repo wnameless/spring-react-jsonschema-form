@@ -13,7 +13,7 @@
  * the License.
  *
  */
-package com.github.wnameless.spring.react;
+package com.github.wnameless.spring.react.jsf;
 
 import java.util.HashMap;
 import java.util.Map;

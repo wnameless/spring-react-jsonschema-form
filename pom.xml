@@ -9,7 +9,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.7.RELEASE</version>
+		<version>2.3.1.RELEASE</version>
 	</parent>
 
 	<name>spring-react-jsonchema-form</name>
@@ -61,11 +61,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.wnameless</groupId>
-			<artifactId>jpa-type-flattenedjson</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
@@ -76,6 +71,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.github.wnameless</groupId>
+			<artifactId>jpa-type-flattenedjson</artifactId>
+			<version>0.2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
