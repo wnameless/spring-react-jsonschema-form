@@ -15,12 +15,13 @@
  */
 package com.github.wnameless.spring.react.jsf;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public interface ReactJsonSchemaForm {
 
@@ -37,13 +38,15 @@ public interface ReactJsonSchemaForm {
   default void setUiSchema(JsonNode uiSchema) {}
 
   default Map<String, JsonNode> toRjsfMap() {
-    Map<String, JsonNode> map = new HashMap<>();
+    ObjectMapper mapper = new ObjectMapper();
+    ObjectNode obj = mapper.createObjectNode();
 
-    map.put("formData", getFormData());
-    map.put("schema", getSchema());
-    map.put("uiSchema", getUiSchema());
+    obj.set("formData", getFormData());
+    obj.set("schema", getSchema());
+    obj.set("uiSchema", getUiSchema());
 
-    return map;
+    return mapper.convertValue(obj,
+        new TypeReference<Map<String, JsonNode>>() {});
   }
 
   default Map<String, JsonNode> toRjsfMap(Map<String, Object> attrs) {

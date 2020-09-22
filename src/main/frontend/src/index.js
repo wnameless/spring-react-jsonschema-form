@@ -19,7 +19,7 @@ export function defaultConfig(config = {}) {
 	if (config.editBtnText) _defaultConfig.editBtnText = config.editBtnText;
 	if (config.newBtnText) _defaultConfig.newBtnText = config.newBtnText;
 
-	return defaultConfig;
+	return _defaultConfig;
 }
 
 export function newForm(rjsf, formId, path, respondId) {
@@ -33,8 +33,8 @@ export function newForm(rjsf, formId, path, respondId) {
 		onSubmit: onSubmit
 	}, rjsf);
 
-	if (!rjsfOpt.cssHref) rjsfOpt.cssHref = _defaultConfig.cssHref;
-	if (!rjsfOpt.btnText) rjsfOpt.btnText = _defaultConfig.newBtnText;
+	if (!rjsfOpt.cssHref) rjsfOpt.cssHref = defaultConfig().cssHref;
+	if (!rjsfOpt.btnText) rjsfOpt.btnText = defaultConfig().newBtnText;
 
 	ReactDOM.render(React.createElement(ReactJSF, rjsfOpt), document.getElementById(formId));
 }
@@ -50,8 +50,8 @@ export function editForm(rjsf, formId, path, respondId) {
 		onSubmit: onSubmit
 	}, rjsf);
 
-	if (!rjsfOpt.cssHref) rjsfOpt.cssHref = _defaultConfig.cssHref;
-	if (!rjsfOpt.btnText) rjsfOpt.btnText = _defaultConfig.editBtnText;
+	if (!rjsfOpt.cssHref) rjsfOpt.cssHref = defaultConfig().cssHref;
+	if (!rjsfOpt.btnText) rjsfOpt.btnText = defaultConfig().editBtnText;
 
 	ReactDOM.render(React.createElement(ReactJSF, rjsfOpt), document.getElementById(formId));
 }
@@ -70,8 +70,8 @@ export function showForm(rjsf, formId, path, respondId) {
 		noValidate: true
 	}, rjsf);
 
-	if (!rjsfOpt.cssHref) rjsfOpt.cssHref = _defaultConfig.cssHref;
-	if (!rjsfOpt.btnText) rjsfOpt.btnText = _defaultConfig.showBtnText;
+	if (!rjsfOpt.cssHref) rjsfOpt.cssHref = defaultConfig().cssHref;
+	if (!rjsfOpt.btnText) rjsfOpt.btnText = defaultConfig().showBtnText;
 
 	ReactDOM.render(React.createElement(ReactJSF, rjsfOpt), document.getElementById(formId));
 }
