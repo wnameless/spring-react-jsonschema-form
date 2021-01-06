@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@rjsf/core": "^2.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "3.4.1",
     "cash-dom": "^7.0.3",
     "file-loader": "^6.0.0",
